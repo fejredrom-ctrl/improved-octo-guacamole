@@ -21,13 +21,8 @@ const main = runtime.module(define, (name) => {
       // 📌 這裡替代 notebook 原本的 CSV 載入，從 Viya 傳入資料
 va.messagingUtil.setOnDataReceivedCallback(function (message) {
   const sasData = message.data;
-  const sampleData = [
-  { name: "Apple", category: "Tech", value: 120, date: "2000" },
-  { name: "Google", category: "Tech", value: 100, date: "2000" },
-  { name: "Apple", category: "Tech", value: 130, date: "2001" },
-  { name: "Google", category: "Tech", value: 140, date: "2001" },
-];
-    main.redefine("data", sampleData);
+
+    main.redefine("data", sasData);
  });
 
 
