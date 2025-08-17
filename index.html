@@ -33,4 +33,13 @@ va.messagingUtil.setOnDataReceivedCallback(function (message) {
     main.redefine("data", sasData);
  });
 
+  const sampleData = [
+  { name: "Apple", category: "Tech", value: 120, date: "2000" },
+  { name: "Google", category: "Tech", value: 100, date: "2000" },
+  { name: "Apple", category: "Tech", value: 130, date: "2001" },
+  { name: "Google", category: "Tech", value: 140, date: "2001" },
+];
+
+main.redefine("data", sampleData);
+
 </script>
