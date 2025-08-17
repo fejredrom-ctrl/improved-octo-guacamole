@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Bar Chart Race</title>
-<link rel="stylesheet" type="text/css" href="./inspector.css">
-<body>
-<!-- sas viya -->
-<script src="https://sassoftware.github.io/sas-visualanalytics-thirdpartyvisualizations/lib/messagingUtil.js">
-</script>
-  
-<script type="module">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bar Chart Race (Viya版)</title>
+    <link rel="stylesheet" type="text/css" href="./inspector.css" />
+  </head>
+  <body>
+    <div id="chart"></div>
 
-import define from "./index.js";
-import {Runtime, Library, Inspector} from "./runtime.js";
+    <!-- SAS Viya DDC 通訊 JS -->
+    <script src="https://sassoftware.github.io/sas-visualanalytics-thirdpartyvisualizations/lib/messagingUtil.js"></script>
 
-const runtime = new Runtime();
+    <script type="module">
+      import define from "./index.js";
+      import { Runtime, Inspector } from "./runtime.js";
+
+      const runtime = new Runtime();
+
       // 啟動模組，只渲染 chart 這個 cell
       const main = runtime.module(define, (name) => {
         if (name === "chart") return new Inspector(document.querySelector("#chart"));
@@ -34,4 +38,4 @@ const runtime = new Runtime();
       });
     </script>
   </body>
-
+</html>
