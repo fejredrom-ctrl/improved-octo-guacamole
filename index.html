@@ -14,17 +14,24 @@ import {Runtime, Library, Inspector} from "./runtime.js";
 
 const runtime = new Runtime();
       // 啟動模組，只渲染 chart 這個 cell
-const main = runtime.module(define, (name) => {
-    if (name === "chart") return new Inspector(document.querySelector("#chart"));
-  });
+      const main = runtime.module(define, (name) => {
+        if (name === "chart") return new Inspector(document.querySelector("#chart"));
+      });
 
       // 📌 這裡替代 notebook 原本的 CSV 載入，從 Viya 傳入資料
-va.messagingUtil.setOnDataReceivedCallback(function (message) {
-  const sasData = message.data;
+      va.messagingUtil.setOnDataReceivedCallback(function (message) {
+        const sasData = message.data;
 
-    main.redefine("data", sasData);
- });
+        // ✅ 假設 SAS 傳來的資料格式如下（每列是個物件）：
+        // [
+        //   { name: "Apple", category: "Technology", value: 100, date: "2019" },
+        //   { name: "Google", category: "Technology", value: 95, date: "2019" },
+        //   ...
+        // ]
 
+        // 🟢 把資料傳給 Observable 中的 `data` 變數
+        main.redefine("data", sasData);
+      });
+    </script>
+  </body>
 
-
-</script>
